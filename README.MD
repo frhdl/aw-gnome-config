@@ -17,8 +17,8 @@ unzip activitywatch-v*
 gitclone https://github.com/getchipman/aw-gnome-config.git & \
 cd aw-gnome-config
 
-#Move autostart files
-mv *.desktop ~/.local/share/applications/
+#Move autostart file
+sudo mv awstart.sh /etc/init.d/
 
 #Set permissions and move scripts
 sudo chmod +x *.sh && \
@@ -29,4 +29,13 @@ mv *.sh activitywatch/
 mkdir ~/.local/opt/ & \
 sudo mv ~/Downloads/aw/activitywatch ~/.local/opt/
 ```
-
+```shell
+#Set permissions of autostart file
+cd /etc/init.d/
+chmod +x awstart.sh
+```
+```shell
+#Add aliases to your .bash_aliases
+ alias awstart='nohup ~/.local/opt/activitywatch/start.sh > /dev/null &'
+ alias awstop='~/.local/opt/activitywatch/kill.sh'
+```
